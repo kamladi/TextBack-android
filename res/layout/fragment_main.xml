@@ -3,7 +3,7 @@
   android:layout_width="match_parent"
   android:layout_height="fill_parent"
   android:orientation="vertical"
-  android:baselineAligned="false">
+  android:baselineAligned="false" android:background="@drawable/schlag-large">
   <TextView
     android:layout_width="fill_parent"
     android:layout_height="42dp"

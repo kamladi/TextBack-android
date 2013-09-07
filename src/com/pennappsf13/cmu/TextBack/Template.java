@@ -34,7 +34,7 @@ public class Template {
         this.text = text;
     }
 
-    public Boolean getSelected() {
+    public Boolean isSelected() {
         return isSelected;
     }
 

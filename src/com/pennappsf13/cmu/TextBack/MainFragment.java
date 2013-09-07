@@ -8,6 +8,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.CompoundButton;
 import android.widget.Switch;
+import android.widget.TextView;
 import com.actionbarsherlock.app.SherlockFragment;
 
 /**
@@ -24,6 +25,8 @@ public class MainFragment extends SherlockFragment {
 
     Switch mSwitch;
     SharedPreferences mPreferences;
+    Template[] templates;
+    String pin;
 
     public static MainFragment newInstance() {
         Bundle args = new Bundle();
@@ -38,6 +41,11 @@ public class MainFragment extends SherlockFragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);    //To change body of overridden methods use File | Settings | File Templates.
         mPreferences = getActivity().getSharedPreferences(getString(R.string.shared_pref_name), 0);
+        templates = new Template[10];
+
+        // make message text field object
+        currTemplateField = (TextView) findViewById(R.id.current_template);
+        currTemplateField.
     }
 
     @Override
@@ -72,5 +80,17 @@ public class MainFragment extends SherlockFragment {
             }
         });
         return v;
+    }
+
+    public void getTemplates() {
+        // TODO: send POST request to server, load templates into memory
+    }
+
+    public Template getSelectedTemplate() {
+        for (Template t : templates) {
+            if (t.isSelected()) {
+                return t;
+            }
+        }
     }
 }

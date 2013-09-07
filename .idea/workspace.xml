@@ -25,7 +25,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="fb4bb79a-18af-42ed-9cad-e0700e35977a" name="Default" comment="">
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/pennappsf13/cmu/TextBack/MainFragment.java" afterPath="$PROJECT_DIR$/src/com/pennappsf13/cmu/TextBack/MainFragment.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/pennappsf13/cmu/TextBack/Template.java" afterPath="$PROJECT_DIR$/src/com/pennappsf13/cmu/TextBack/Template.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/res/layout/fragment_main.xml" afterPath="$PROJECT_DIR$/res/layout/fragment_main.xml" />
     </list>
     <ignored path="TextBack-android.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -37,10 +39,10 @@
     <file path="$USER_HOME$/Downloads/JakeWharton-ActionBarSherlock-5a15d92/actionbarsherlock-samples/pom.xml" changelist="fb4bb79a-18af-42ed-9cad-e0700e35977a" time="1378533878991" ignored="false" />
     <file path="/SingleFragmentActivity.java" changelist="fb4bb79a-18af-42ed-9cad-e0700e35977a" time="1378533948657" ignored="false" />
     <file path="/MainActivity.java" changelist="fb4bb79a-18af-42ed-9cad-e0700e35977a" time="1378534074142" ignored="false" />
-    <file path="/MainFragment.java" changelist="fb4bb79a-18af-42ed-9cad-e0700e35977a" time="1378534375677" ignored="false" />
+    <file path="/MainFragment.java" changelist="fb4bb79a-18af-42ed-9cad-e0700e35977a" time="1378548234965" ignored="false" />
     <file path="/fragment_main.xml" changelist="fb4bb79a-18af-42ed-9cad-e0700e35977a" time="1378544407542" ignored="false" />
     <file path="/strings.xml" changelist="fb4bb79a-18af-42ed-9cad-e0700e35977a" time="1378542859121" ignored="false" />
-    <file path="/Template.java" changelist="fb4bb79a-18af-42ed-9cad-e0700e35977a" time="1378546717979" ignored="false" />
+    <file path="/Template.java" changelist="fb4bb79a-18af-42ed-9cad-e0700e35977a" time="1378547919239" ignored="false" />
     <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -121,10 +123,10 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="MainFragment.java" pinned="false" current="false" current-in-tab="false">
+      <file leaf-file-name="MainFragment.java" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/com/pennappsf13/cmu/TextBack/MainFragment.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="72" column="67" selection-start="2504" selection-end="2504" vertical-scroll-proportion="0.0">
+            <state line="28" column="15" selection-start="746" selection-end="746" vertical-scroll-proportion="0.42284867">
               <folding />
             </state>
           </provider>
@@ -133,16 +135,16 @@
       <file leaf-file-name="workspace.xml" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/.idea/workspace.xml">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="217" column="5" selection-start="11423" selection-end="11423" vertical-scroll-proportion="0.0">
+            <state line="219" column="5" selection-start="11767" selection-end="11767" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Template.java" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="Template.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/com/pennappsf13/cmu/TextBack/Template.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="26" column="5" selection-start="612" selection-end="612" vertical-scroll-proportion="0.57863504">
+            <state line="36" column="21" selection-start="765" selection-end="765" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
@@ -150,11 +152,11 @@
       </file>
       <file leaf-file-name="fragment_main.xml" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/res/layout/fragment_main.xml">
-          <provider selected="true" editor-type-id="android-designer">
+          <provider editor-type-id="android-designer">
             <state />
           </provider>
-          <provider editor-type-id="text-editor">
-            <state line="36" column="105" selection-start="1666" selection-end="1666" vertical-scroll-proportion="-21.6">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="36" column="105" selection-start="1710" selection-end="1710" vertical-scroll-proportion="-10.384615">
               <folding />
             </state>
           </provider>
@@ -200,11 +202,11 @@
         <option value="$PROJECT_DIR$/src/com/pennappsf13/cmu/TextBack/SingleFragmentActivity.java" />
         <option value="$PROJECT_DIR$/src/com/pennappsf13/cmu/TextBack/MainActivity.java" />
         <option value="$PROJECT_DIR$/AndroidManifest.xml" />
-        <option value="$PROJECT_DIR$/src/com/pennappsf13/cmu/TextBack/MainFragment.java" />
         <option value="$PROJECT_DIR$/res/values/strings.xml" />
         <option value="$PROJECT_DIR$/.idea/workspace.xml" />
         <option value="$PROJECT_DIR$/res/layout/fragment_main.xml" />
         <option value="$PROJECT_DIR$/src/com/pennappsf13/cmu/TextBack/Template.java" />
+        <option value="$PROJECT_DIR$/src/com/pennappsf13/cmu/TextBack/MainFragment.java" />
       </list>
     </option>
   </component>
@@ -285,7 +287,7 @@
     <property name="MemberChooser.sorted" value="false" />
     <property name="recentsLimit" value="5" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
-    <property name="AndroidLayoutSelectedEditor" value="android-designer" />
+    <property name="AndroidLayoutSelectedEditor" value="text-editor" />
     <property name="project.structure.side.proportion" value="0.2" />
     <property name="MemberChooser.copyJavadoc" value="false" />
     <property name="GoToClass.toSaveIncludeLibraries" value="false" />
@@ -625,33 +627,12 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/.idea/workspace.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="217" column="5" selection-start="11423" selection-end="11423" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/com/pennappsf13/cmu/TextBack/SingleFragmentActivity.java">
       <provider selected="true" editor-type-id="text-editor">
         <state line="18" column="69" selection-start="579" selection-end="579" vertical-scroll-proportion="0.0">
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/pennappsf13/cmu/TextBack/MainFragment.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="72" column="67" selection-start="2504" selection-end="2504" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/AndroidManifest.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="20" column="97" selection-start="998" selection-end="998" vertical-scroll-proportion="0.0">
-          <folding />
         </state>
       </provider>
     </entry>
@@ -663,18 +644,39 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/res/layout/fragment_main.xml">
-      <provider selected="true" editor-type-id="android-designer">
+      <provider editor-type-id="android-designer">
         <state />
       </provider>
-      <provider editor-type-id="text-editor">
-        <state line="36" column="105" selection-start="1666" selection-end="1666" vertical-scroll-proportion="-21.6">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="36" column="105" selection-start="1710" selection-end="1710" vertical-scroll-proportion="-10.384615">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/AndroidManifest.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="20" column="97" selection-start="998" selection-end="998" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/.idea/workspace.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="219" column="5" selection-start="11767" selection-end="11767" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/com/pennappsf13/cmu/TextBack/Template.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="26" column="5" selection-start="612" selection-end="612" vertical-scroll-proportion="0.57863504">
+        <state line="36" column="21" selection-start="765" selection-end="765" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/pennappsf13/cmu/TextBack/MainFragment.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="28" column="15" selection-start="746" selection-end="746" vertical-scroll-proportion="0.42284867">
           <folding />
         </state>
       </provider>

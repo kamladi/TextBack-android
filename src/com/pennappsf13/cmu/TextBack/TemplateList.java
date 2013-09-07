@@ -14,6 +14,6 @@ import com.actionbarsherlock.app.SherlockFragment;
 public class TemplateList extends SingleFragmentActivity {
     @Override
     protected SherlockFragment createFragment() {
-        return MainFragment.newInstance();
+        return TemplateListFragment.newInstance();
     }
 }

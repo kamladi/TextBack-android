@@ -37,5 +37,14 @@ public class TemplateCollection {
         this.templates.add(t);
     }
 
-
+    public Template getSelectedTemplate() {
+        for (Template t : this.templates) {
+            if (t.isSelected()) {
+                return t;
+            }
+        }
+        // if no template is selected, assume first template selected
+        this.templates.get(0).setSelected(true);
+        return this.templates.get(0);
+    }
 }

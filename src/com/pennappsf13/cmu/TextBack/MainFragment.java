@@ -43,6 +43,12 @@ public class MainFragment extends SherlockFragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);    //To change body of overridden methods use File | Settings | File Templates.
+        if(savedInstanceState != null) {
+            pin = savedInstanceState.getString("pin", "LOL");
+            if(pin == "LOL") {
+                //TODO: prompt for pin, maybe via popup?
+            }
+        }
         mPreferences = getActivity().getSharedPreferences(getString(R.string.shared_pref_name), 0);
         templates = new TemplateCollection();
         templates.fetch();
@@ -57,7 +63,7 @@ public class MainFragment extends SherlockFragment {
 
         // setup currTemplateField
         currTemplateField = (TextView) v.findViewById(R.id.current_template);
-        Template selectedTemplate = getSelectedTemplate();
+        Template selectedTemplate = templates.getSelectedTemplate();
         currTemplateField.setText(selectedTemplate.getText());
 
         mToggle = (ToggleButton) v.findViewById(R.id.main_toggle);
@@ -88,18 +94,9 @@ public class MainFragment extends SherlockFragment {
         return v;
     }
 
-    public void getTemplates() {
-        // TODO: send POST request to server, load templates into memory
-    }
-
-    public Template getSelectedTemplate() {
-        for (Template t : templates.templates) {
-            if (t.isSelected()) {
-                return t;
-            }
-        }
-        // if no template is selected, assume first template selected
-        templates.templates.get(0).setSelected(true);
-        return templates.templates.get(0);
+    @Override
+    public void onSaveInstanceState(Bundle savedInstanceState) {
+        super.onSaveInstanceState(savedInstanceState);
+        savedInstanceState.putString("pin", pin);
     }
 }

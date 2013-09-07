@@ -10,5 +10,10 @@
     android:text="@string/main_title_label"
     style="?android:listSeparatorTextViewStyle"
     />
+    <Switch
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Start"
+            android:id="@+id/main_switch"/>
 </LinearLayout>
 

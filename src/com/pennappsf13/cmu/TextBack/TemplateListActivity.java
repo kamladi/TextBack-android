@@ -2,6 +2,7 @@ package com.pennappsf13.cmu.TextBack;
 
 import android.app.Activity;
 import android.os.Bundle;
+import android.support.v4.app.Fragment;
 import com.actionbarsherlock.app.SherlockFragment;
 
 /**
@@ -13,7 +14,7 @@ import com.actionbarsherlock.app.SherlockFragment;
  */
 public class TemplateListActivity extends SingleFragmentActivity {
     @Override
-    protected SherlockFragment createFragment() {
-        return TemplateListFragment.newInstance();
+    protected Fragment createFragment() {
+        return new TemplateListFragment();
     }
 }

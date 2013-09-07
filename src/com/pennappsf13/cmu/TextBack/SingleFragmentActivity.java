@@ -9,7 +9,7 @@ import com.actionbarsherlock.app.SherlockFragmentActivity;
 
 public abstract class SingleFragmentActivity extends SherlockFragmentActivity {
 
-    protected abstract SherlockFragment createFragment();
+    protected abstract Fragment createFragment();
 
     /**
      * Called when the activity is first created.

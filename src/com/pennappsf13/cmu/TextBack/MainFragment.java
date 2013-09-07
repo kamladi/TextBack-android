@@ -65,7 +65,7 @@ public class MainFragment extends SherlockFragment {
             @Override
             public void onClick(View v) {
                 Log.i(TAG, "clicked template ");
-                Intent i = new Intent(getActivity(), TemplateList.class);
+                Intent i = new Intent(getActivity(), TemplateListActivity.class);
                 startActivity(i);
             }
         });
@@ -81,7 +81,7 @@ public class MainFragment extends SherlockFragment {
         if(pin == "LOL") {
             //TODO: prompt for pin, maybe via popup?
         }
-        templates.fetch();
+        mTemplates.fetch();
 
         mToggle.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             private String onFlag = getString(R.string.pref_is_on);

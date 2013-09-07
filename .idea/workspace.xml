@@ -25,10 +25,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="fb4bb79a-18af-42ed-9cad-e0700e35977a" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/TextBack-android.iml" afterPath="$PROJECT_DIR$/TextBack-android.iml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/res/layout/fragment_main.xml" afterPath="$PROJECT_DIR$/res/layout/fragment_main.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/res/values/strings.xml" afterPath="$PROJECT_DIR$/res/values/strings.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/pennappsf13/cmu/TextBack/Template.java" afterPath="$PROJECT_DIR$/src/com/pennappsf13/cmu/TextBack/Template.java" />
     </list>
     <ignored path="TextBack-android.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -136,7 +133,7 @@
       <file leaf-file-name="workspace.xml" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/.idea/workspace.xml">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="220" column="5" selection-start="11785" selection-end="11785" vertical-scroll-proportion="0.0">
+            <state line="217" column="5" selection-start="11423" selection-end="11423" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
@@ -145,7 +142,7 @@
       <file leaf-file-name="Template.java" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/com/pennappsf13/cmu/TextBack/Template.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="25" column="35" selection-start="604" selection-end="604" vertical-scroll-proportion="0.5563798">
+            <state line="26" column="5" selection-start="612" selection-end="612" vertical-scroll-proportion="0.57863504">
               <folding />
             </state>
           </provider>
@@ -630,7 +627,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/.idea/workspace.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="220" column="5" selection-start="11785" selection-end="11785" vertical-scroll-proportion="0.0">
+        <state line="217" column="5" selection-start="11423" selection-end="11423" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
@@ -677,7 +674,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/com/pennappsf13/cmu/TextBack/Template.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="25" column="35" selection-start="604" selection-end="604" vertical-scroll-proportion="0.5563798">
+        <state line="26" column="5" selection-start="612" selection-end="612" vertical-scroll-proportion="0.57863504">
           <folding />
         </state>
       </provider>

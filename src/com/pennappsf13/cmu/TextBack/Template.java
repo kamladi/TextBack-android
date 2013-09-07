@@ -12,18 +12,18 @@ public class Template {
     private String text;
     private Boolean isSelected;
 
+    public void Template(String title, String text, Boolean isSelected) {
+        this.setTitle(title);
+        this.setText(text);
+        this.setSelected(isSelected);
+    }
+
     public String getTitle() {
         return title;
     }
 
     public void setTitle(String title) {
         this.title = title;
-    }
-
-    public void Template(String title, String text, Boolean isSelected) {
-        this.setTitle(title);
-        this.setText(text);
-        this.setSelected(isSelected);
     }
 
     public String getText() {

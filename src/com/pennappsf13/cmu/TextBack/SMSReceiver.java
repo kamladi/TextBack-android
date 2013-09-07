@@ -18,6 +18,8 @@ import android.widget.Toast;
  */
 public class SMSReceiver extends BroadcastReceiver {
     private final String TAG = this.getClass().getSimpleName();
+    public static final String EXTRA_MESSAGE_BODY = "MessageBody";
+    public static final String EXTRA_SENDEE_NUMBER = "SendeeNumber";
 
     private SharedPreferences mPreferences;
 
@@ -39,6 +41,10 @@ public class SMSReceiver extends BroadcastReceiver {
 
                 if (mPreferences.getBoolean(onFlag, false)) {
                     Toast.makeText(context, "SMS from " + strMsgSrc + " : " + strMsgBody, Toast.LENGTH_LONG).show();
+                    Intent service = new Intent(context, SMSService.class);
+                    service.putExtra(EXTRA_MESSAGE_BODY, "Sorry I brb.");
+                    service.putExtra(EXTRA_SENDEE_NUMBER, strMsgSrc);
+                    context.startService(service);
                 } else {
                     Toast.makeText(context, "OFFFFFF", Toast.LENGTH_SHORT).show();
                 }

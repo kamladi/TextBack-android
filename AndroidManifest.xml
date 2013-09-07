@@ -17,7 +17,7 @@
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
-        <activity android:name=".TemplateList"/>
+        <activity android:name=".TemplateListActivity"/>
 
         <receiver android:name=".SMSReceiver" android:exported="true" >
             <intent-filter>

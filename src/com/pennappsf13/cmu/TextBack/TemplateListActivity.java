@@ -11,9 +11,9 @@ import com.actionbarsherlock.app.SherlockFragment;
  * Time: 6:36 AM
  * To change this template use File | Settings | File Templates.
  */
-public class TemplateList extends SingleFragmentActivity {
+public class TemplateListActivity extends SingleFragmentActivity {
     @Override
     protected SherlockFragment createFragment() {
-        return MainFragment.newInstance();
+        return TemplateListFragment.newInstance();
     }
 }

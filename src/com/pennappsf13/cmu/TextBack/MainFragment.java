@@ -7,7 +7,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.CompoundButton;
-import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.ToggleButton;
 import com.actionbarsherlock.app.SherlockFragment;
@@ -26,7 +25,7 @@ public class MainFragment extends SherlockFragment {
 
     ToggleButton mToggle;
     SharedPreferences mPreferences;
-    TemplateCollection templates;
+    TemplateCollection mTemplates;
     String pin;
 
     TextView currTemplateField;
@@ -50,20 +49,20 @@ public class MainFragment extends SherlockFragment {
             }
         }
         mPreferences = getActivity().getSharedPreferences(getString(R.string.shared_pref_name), 0);
-        templates = new TemplateCollection();
-        templates.fetch();
 
+        mTemplates = TemplateCollection.get(getActivity());
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+
         String onFlag = getString(R.string.pref_is_on);
 
         View v = inflater.inflate(R.layout.fragment_main, container, false);
 
         // setup currTemplateField
         currTemplateField = (TextView) v.findViewById(R.id.current_template);
-        Template selectedTemplate = templates.getSelectedTemplate();
+        Template selectedTemplate = mTemplates.getSelectedTemplate();
         currTemplateField.setText(selectedTemplate.getText());
 
         mToggle = (ToggleButton) v.findViewById(R.id.main_toggle);
@@ -98,5 +97,11 @@ public class MainFragment extends SherlockFragment {
     public void onSaveInstanceState(Bundle savedInstanceState) {
         super.onSaveInstanceState(savedInstanceState);
         savedInstanceState.putString("pin", pin);
+    }
+
+    @Override
+    public void onPause() {
+        super.onPause();
+        mTemplates.saveTemplates();
     }
 }

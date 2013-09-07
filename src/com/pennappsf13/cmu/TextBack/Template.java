@@ -1,5 +1,8 @@
 package com.pennappsf13.cmu.TextBack;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
 /**
  * Created with IntelliJ IDEA.
  * User: kamladi
@@ -8,9 +11,14 @@ package com.pennappsf13.cmu.TextBack;
  * To change this template use File | Settings | File Templates.
  */
 public class Template {
-    private String title;
-    private String text;
-    private Boolean isSelected;
+    private String mTitle;
+    private String mText;
+    private Boolean mIsSelected;
+
+    private static final String JSON_TITLE = "title";
+    private static final String JSON_TEXT = "text";
+    private static final String JSON_IS_SELECTED = "isSelected";
+
 
     public Template(String title, String text, Boolean isSelected) {
         this.setTitle(title);
@@ -18,27 +26,43 @@ public class Template {
         this.setSelected(isSelected);
     }
 
+    public Template(JSONObject obj) throws JSONException {
+        mTitle = obj.getString(JSON_TITLE);
+        mText = obj.getString(JSON_TEXT);
+        mIsSelected = obj.getBoolean(JSON_IS_SELECTED);
+
+    }
+
+    public JSONObject toJSON() throws JSONException {
+        JSONObject json = new JSONObject();
+        json.put(JSON_TITLE, mTitle);
+        json.put(JSON_TEXT, mText);
+        json.put(JSON_IS_SELECTED, mIsSelected);
+
+        return json;
+    }
+
     public String getTitle() {
-        return title;
+        return mTitle;
     }
 
     public void setTitle(String title) {
-        this.title = title;
+        mTitle = title;
     }
 
     public String getText() {
-        return text;
+        return mText;
     }
 
     public void setText(String text) {
-        this.text = text;
+        mText = text;
     }
 
-    public Boolean isSelected() {
-        return isSelected;
+    public Boolean getSelected() {
+        return mIsSelected;
     }
 
-    public void setSelected(Boolean selected) {
-        this.isSelected = selected;
+    public void setSelected(Boolean isSelected) {
+        mIsSelected = isSelected;
     }
 }

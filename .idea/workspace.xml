@@ -5,8 +5,8 @@
       <filter>
         <option name="logLevel" value="verbose" />
         <option name="logMessagePattern" value="" />
-        <option name="logTagPattern" value="SMSReceiver" />
-        <option name="name" value="SMSReceiver" />
+        <option name="logTagPattern" value="SMS" />
+        <option name="name" value="SMSReceiver/Service" />
         <option name="pid" value="" />
       </filter>
     </filters>
@@ -35,32 +35,29 @@
     </option>
   </component>
   <component name="AndroidLogFilters">
-    <option name="TOOL_WINDOW_CONFIGURED_FILTER" value="SMSReceiver" />
+    <option name="TOOL_WINDOW_CONFIGURED_FILTER" value="SMSReceiver/Service" />
   </component>
   <component name="ChangeListManager">
     <list default="true" id="fb4bb79a-18af-42ed-9cad-e0700e35977a" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/com/pennappsf13/cmu/TextBack/SMSReceiver.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/AndroidManifest.xml" afterPath="$PROJECT_DIR$/AndroidManifest.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/pennappsf13/cmu/TextBack/MainFragment.java" afterPath="$PROJECT_DIR$/src/com/pennappsf13/cmu/TextBack/MainFragment.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/res/layout/fragment_main.xml" afterPath="$PROJECT_DIR$/res/layout/fragment_main.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/res/values/strings.xml" afterPath="$PROJECT_DIR$/res/values/strings.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/pennappsf13/cmu/TextBack/SMSReceiver.java" afterPath="$PROJECT_DIR$/src/com/pennappsf13/cmu/TextBack/SMSReceiver.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="TextBack-android.iws" />
     <ignored path=".idea/workspace.xml" />
-    <file path="/Dummy.txt" changelist="fb4bb79a-18af-42ed-9cad-e0700e35977a" time="1378543521738" ignored="false" />
-    <file path="$PROJECT_DIR$/.idea/workspace.xml" changelist="fb4bb79a-18af-42ed-9cad-e0700e35977a" time="1378543595151" ignored="false" />
+    <file path="/Dummy.txt" changelist="fb4bb79a-18af-42ed-9cad-e0700e35977a" time="1378549211524" ignored="false" />
     <file path="/MyActivity.java" changelist="fb4bb79a-18af-42ed-9cad-e0700e35977a" time="1378533949249" ignored="false" />
-    <file path="/fragment.java" changelist="fb4bb79a-18af-42ed-9cad-e0700e35977a" time="1378535382450" ignored="false" />
-    <file path="/AndroidManifest.xml" changelist="fb4bb79a-18af-42ed-9cad-e0700e35977a" time="1378537788967" ignored="false" />
+    <file path="/fragment.java" changelist="fb4bb79a-18af-42ed-9cad-e0700e35977a" time="1378550807557" ignored="false" />
+    <file path="/AndroidManifest.xml" changelist="fb4bb79a-18af-42ed-9cad-e0700e35977a" time="1378549359299" ignored="false" />
     <file path="$USER_HOME$/Downloads/JakeWharton-ActionBarSherlock-5a15d92/actionbarsherlock-samples/demos/gen-external-apklibs/com.actionbarsherlock_actionbarsherlock_4.4.0/AndroidManifest.xml" changelist="fb4bb79a-18af-42ed-9cad-e0700e35977a" time="1378533911312" ignored="false" />
     <file path="$USER_HOME$/Downloads/JakeWharton-ActionBarSherlock-5a15d92/actionbarsherlock-samples/pom.xml" changelist="fb4bb79a-18af-42ed-9cad-e0700e35977a" time="1378533878991" ignored="false" />
     <file path="/SingleFragmentActivity.java" changelist="fb4bb79a-18af-42ed-9cad-e0700e35977a" time="1378533948657" ignored="false" />
     <file path="/MainActivity.java" changelist="fb4bb79a-18af-42ed-9cad-e0700e35977a" time="1378534074142" ignored="false" />
-    <file path="/MainFragment.java" changelist="fb4bb79a-18af-42ed-9cad-e0700e35977a" time="1378542997179" ignored="false" />
+    <file path="/MainFragment.java" changelist="fb4bb79a-18af-42ed-9cad-e0700e35977a" time="1378548423906" ignored="false" />
     <file path="/fragment_main.xml" changelist="fb4bb79a-18af-42ed-9cad-e0700e35977a" time="1378540411167" ignored="false" />
     <file path="/strings.xml" changelist="fb4bb79a-18af-42ed-9cad-e0700e35977a" time="1378542474316" ignored="false" />
-    <file path="/SMSService.java" changelist="fb4bb79a-18af-42ed-9cad-e0700e35977a" time="1378537927666" ignored="false" />
-    <file path="/SMSReceiver.java" changelist="fb4bb79a-18af-42ed-9cad-e0700e35977a" time="1378542638597" ignored="false" />
+    <file path="/SMSService.java" changelist="fb4bb79a-18af-42ed-9cad-e0700e35977a" time="1378549940149" ignored="false" />
+    <file path="/SMSReceiver.java" changelist="fb4bb79a-18af-42ed-9cad-e0700e35977a" time="1378549843476" ignored="false" />
     <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -132,10 +129,10 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="SMSService.java" pinned="false" current="false" current-in-tab="false">
+      <file leaf-file-name="SMSService.java" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/com/pennappsf13/cmu/TextBack/SMSService.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="16" column="24" selection-start="404" selection-end="404" vertical-scroll-proportion="0.0">
+            <state line="27" column="83" selection-start="897" selection-end="897" vertical-scroll-proportion="0.8920705">
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -146,7 +143,7 @@
       <file leaf-file-name="SMSReceiver.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/com/pennappsf13/cmu/TextBack/SMSReceiver.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="35" column="76" selection-start="1144" selection-end="1144" vertical-scroll-proportion="0.0">
+            <state line="45" column="56" selection-start="1806" selection-end="1806" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
@@ -164,7 +161,7 @@
       <file leaf-file-name="MainFragment.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/com/pennappsf13/cmu/TextBack/MainFragment.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="54" column="4" selection-start="1651" selection-end="1651" vertical-scroll-proportion="-10.56">
+            <state line="63" column="0" selection-start="2104" selection-end="2104" vertical-scroll-proportion="-8.76">
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -205,10 +202,10 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="AndroidManifest.xml" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="AndroidManifest.xml" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/AndroidManifest.xml">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="26" column="0" selection-start="1176" selection-end="1176" vertical-scroll-proportion="0.85903084">
+            <state line="25" column="45" selection-start="1202" selection-end="1202" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
@@ -235,12 +232,12 @@
         <option value="$PROJECT_DIR$/src/com/pennappsf13/cmu/TextBack/MyActivity.java" />
         <option value="$PROJECT_DIR$/src/com/pennappsf13/cmu/TextBack/SingleFragmentActivity.java" />
         <option value="$PROJECT_DIR$/src/com/pennappsf13/cmu/TextBack/MainActivity.java" />
-        <option value="$PROJECT_DIR$/AndroidManifest.xml" />
-        <option value="$PROJECT_DIR$/src/com/pennappsf13/cmu/TextBack/SMSService.java" />
         <option value="$PROJECT_DIR$/res/layout/fragment_main.xml" />
         <option value="$PROJECT_DIR$/res/values/strings.xml" />
-        <option value="$PROJECT_DIR$/src/com/pennappsf13/cmu/TextBack/SMSReceiver.java" />
         <option value="$PROJECT_DIR$/src/com/pennappsf13/cmu/TextBack/MainFragment.java" />
+        <option value="$PROJECT_DIR$/AndroidManifest.xml" />
+        <option value="$PROJECT_DIR$/src/com/pennappsf13/cmu/TextBack/SMSReceiver.java" />
+        <option value="$PROJECT_DIR$/src/com/pennappsf13/cmu/TextBack/SMSService.java" />
       </list>
     </option>
   </component>
@@ -383,6 +380,7 @@
     <property name="project.structure.side.proportion" value="0.2" />
     <property name="MemberChooser.copyJavadoc" value="false" />
     <property name="GoToClass.toSaveIncludeLibraries" value="false" />
+    <property name="restartRequiresConfirmation" value="true" />
     <property name="FullScreen" value="true" />
     <property name="MemberChooser.showClasses" value="true" />
     <property name="GoToClass.includeLibraries" value="false" />
@@ -394,7 +392,7 @@
       <recent name="$PROJECT_DIR$/res/layout" />
     </key>
   </component>
-  <component name="RunManager" selected="Android Application.TextBack-android">
+  <component name="RunManager" selected="Android Application.Device">
     <configuration default="true" type="#org.jetbrains.idea.devkit.run.PluginConfigurationType" factoryName="Plugin">
       <module name="" />
       <option name="VM_PARAMETERS" value="-Xmx512m -Xms256m -XX:MaxPermSize=250m" />
@@ -535,8 +533,27 @@
       <ConfigurationWrapper RunnerId="AndroidDebugRunner" />
       <method />
     </configuration>
-    <list size="1">
+    <configuration default="false" name="Device" type="AndroidRunConfigurationType" factoryName="Android Application">
+      <module name="TextBack-android" />
+      <option name="ACTIVITY_CLASS" value="" />
+      <option name="MODE" value="default_activity" />
+      <option name="DEPLOY" value="true" />
+      <option name="TARGET_SELECTION_MODE" value="USB_DEVICE" />
+      <option name="PREFERRED_AVD" value="" />
+      <option name="USE_COMMAND_LINE" value="true" />
+      <option name="COMMAND_LINE" value="" />
+      <option name="WIPE_USER_DATA" value="false" />
+      <option name="DISABLE_BOOT_ANIMATION" value="false" />
+      <option name="NETWORK_SPEED" value="full" />
+      <option name="NETWORK_LATENCY" value="none" />
+      <option name="CLEAR_LOGCAT" value="false" />
+      <RunnerSettings RunnerId="AndroidDebugRunner" />
+      <ConfigurationWrapper RunnerId="AndroidDebugRunner" />
+      <method />
+    </configuration>
+    <list size="2">
       <item index="0" class="java.lang.String" itemvalue="Android Application.TextBack-android" />
+      <item index="1" class="java.lang.String" itemvalue="Android Application.Device" />
     </list>
     <configuration name="&lt;template&gt;" type="WebApp" default="true" selected="false">
       <Host>localhost</Host>
@@ -564,11 +581,11 @@
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.3990025" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32917705" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32793018" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Android" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Android" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32917705" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -674,7 +691,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state line="8" column="128" selection-start="293" selection-end="293" vertical-scroll-proportion="0.25104603">
           <folding>
-            <element signature="imports" expanded="true" />
+            <element signature="imports" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -712,35 +729,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/pennappsf13/cmu/TextBack/SMSService.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="16" column="24" selection-start="404" selection-end="404" vertical-scroll-proportion="0.0">
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/res/values/strings.xml">
       <provider selected="true" editor-type-id="text-editor">
         <state line="5" column="43" selection-start="274" selection-end="274" vertical-scroll-proportion="-3.0">
           <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/pennappsf13/cmu/TextBack/SMSReceiver.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="35" column="76" selection-start="1144" selection-end="1144" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/pennappsf13/cmu/TextBack/MainFragment.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="54" column="4" selection-start="1651" selection-end="1651" vertical-scroll-proportion="-10.56">
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -754,10 +746,35 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/pennappsf13/cmu/TextBack/MainFragment.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="63" column="0" selection-start="2104" selection-end="2104" vertical-scroll-proportion="-8.76">
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/AndroidManifest.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="26" column="0" selection-start="1176" selection-end="1176" vertical-scroll-proportion="0.85903084">
+        <state line="25" column="45" selection-start="1202" selection-end="1202" vertical-scroll-proportion="0.0">
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/pennappsf13/cmu/TextBack/SMSReceiver.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="45" column="56" selection-start="1806" selection-end="1806" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/pennappsf13/cmu/TextBack/SMSService.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="27" column="83" selection-start="897" selection-end="897" vertical-scroll-proportion="0.8920705">
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>

@@ -39,8 +39,19 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="fb4bb79a-18af-42ed-9cad-e0700e35977a" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/AndroidManifest.xml" afterPath="$PROJECT_DIR$/AndroidManifest.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/pennappsf13/cmu/TextBack/SMSReceiver.java" afterPath="$PROJECT_DIR$/src/com/pennappsf13/cmu/TextBack/SMSReceiver.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/res/drawable-hdpi/button_green.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/res/drawable-ldpi/button_green.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/res/drawable-mdpi/button_green.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/res/drawable-xhdpi/button_green.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/res/drawable-hdpi/button_red.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/res/drawable-ldpi/button_red.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/res/drawable-mdpi/button_red.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/res/drawable-xhdpi/button_red.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/com/pennappsf13/cmu/TextBack/Template.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/pennappsf13/cmu/TextBack/MainFragment.java" afterPath="$PROJECT_DIR$/src/com/pennappsf13/cmu/TextBack/MainFragment.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/TextBack-android.iml" afterPath="$PROJECT_DIR$/TextBack-android.iml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/res/layout/fragment_main.xml" afterPath="$PROJECT_DIR$/res/layout/fragment_main.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/res/values/strings.xml" afterPath="$PROJECT_DIR$/res/values/strings.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="TextBack-android.iws" />
@@ -161,7 +172,7 @@
       <file leaf-file-name="MainFragment.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/com/pennappsf13/cmu/TextBack/MainFragment.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="63" column="0" selection-start="2104" selection-end="2104" vertical-scroll-proportion="-8.76">
+            <state line="80" column="0" selection-start="2850" selection-end="2850" vertical-scroll-proportion="-8.76">
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -175,7 +186,7 @@
             <state />
           </provider>
           <provider selected="true" editor-type-id="text-editor">
-            <state line="16" column="34" selection-start="594" selection-end="594" vertical-scroll-proportion="-4.6153846">
+            <state line="22" column="34" selection-start="1100" selection-end="1100" vertical-scroll-proportion="-4.6153846">
               <folding />
             </state>
           </provider>
@@ -184,7 +195,7 @@
       <file leaf-file-name="strings.xml" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/res/values/strings.xml">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="5" column="43" selection-start="274" selection-end="274" vertical-scroll-proportion="-3.0">
+            <state line="6" column="43" selection-start="318" selection-end="318" vertical-scroll-proportion="-3.0">
               <folding />
             </state>
           </provider>
@@ -717,7 +728,7 @@
         <state />
       </provider>
       <provider selected="true" editor-type-id="text-editor">
-        <state line="16" column="34" selection-start="594" selection-end="594" vertical-scroll-proportion="-4.6153846">
+        <state line="22" column="34" selection-start="1100" selection-end="1100" vertical-scroll-proportion="-4.6153846">
           <folding />
         </state>
       </provider>
@@ -731,7 +742,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/res/values/strings.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="5" column="43" selection-start="274" selection-end="274" vertical-scroll-proportion="-3.0">
+        <state line="6" column="43" selection-start="318" selection-end="318" vertical-scroll-proportion="-3.0">
           <folding />
         </state>
       </provider>
@@ -748,7 +759,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/com/pennappsf13/cmu/TextBack/MainFragment.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="63" column="0" selection-start="2104" selection-end="2104" vertical-scroll-proportion="-8.76">
+        <state line="80" column="0" selection-start="2850" selection-end="2850" vertical-scroll-proportion="-8.76">
           <folding>
             <element signature="imports" expanded="true" />
           </folding>

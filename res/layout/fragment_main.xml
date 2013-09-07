@@ -3,37 +3,23 @@
   android:layout_width="match_parent"
   android:layout_height="fill_parent"
   android:orientation="vertical"
-  android:baselineAligned="false" android:background="@drawable/schlag-large">
-  <TextView
-    android:layout_width="fill_parent"
-    android:layout_height="42dp"
-    android:text="Current Reply Message"
-    style="?android:listSeparatorTextViewStyle"
-    android:gravity="bottom" android:paddingBottom="5px"/>
-
-    <!--
-    <Switch
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Start"
-            android:id="@+id/main_switch"/>
-            -->
+  android:baselineAligned="false">
+    <TextView
+        android:layout_width="fill_parent"
+        android:layout_height="42dp"
+        android:text="Current Reply Message"
+        style="?android:listSeparatorTextViewStyle"
+        android:gravity="bottom" android:paddingBottom="5px"/>
     <TextView
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:text="@string/default_current_template"
             android:id="@+id/current_template" android:autoText="false" android:textSize="20px" android:background="#c4cdca"
             android:textColor="#212328" android:padding="10px" android:ellipsize="end" android:clickable="true"/>
-    <Space
-            android:layout_width="fill_parent"
-            android:layout_height="154dp"
-            android:id="@+id/space"/>
     <ToggleButton
-            android:layout_width="150px"
-            android:layout_height="150px"
-            android:text="New ToggleButton"
-            android:id="@+id/toggleButton" android:checked="false"
-            android:textOff="Start" android:textOn="Stop" android:background="@drawable/button_green"
-            android:clickable="true" android:textSize="48px" android:layout_gravity="center_horizontal"/>
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:text="Start"
+            android:id="@+id/main_toggle"/>
 </LinearLayout>
 

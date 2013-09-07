@@ -12,7 +12,7 @@ public class Template {
     private String text;
     private Boolean isSelected;
 
-    public void Template(String title, String text, Boolean isSelected) {
+    public Template(String title, String text, Boolean isSelected) {
         this.setTitle(title);
         this.setText(text);
         this.setSelected(isSelected);
@@ -39,6 +39,6 @@ public class Template {
     }
 
     public void setSelected(Boolean selected) {
-        isSelected = selected;
+        this.isSelected = selected;
     }
 }

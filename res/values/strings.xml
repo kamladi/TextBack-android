@@ -4,4 +4,5 @@
     <string name="main_title_label">TextBack</string>
     <string name="shared_pref_name">TextBack.sharedPreferences</string>
     <string name="pref_is_on">isOn</string>
+    <string name="default_current_template">(No messages, Tap to create one)</string>
 </resources>

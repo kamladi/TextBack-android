@@ -26,7 +26,7 @@ public class MainFragment extends SherlockFragment {
 
     ToggleButton mToggle;
     SharedPreferences mPreferences;
-    Template[] templates;
+    TemplateCollection templates;
     String pin;
 
     TextView currTemplateField;
@@ -44,12 +44,9 @@ public class MainFragment extends SherlockFragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);    //To change body of overridden methods use File | Settings | File Templates.
         mPreferences = getActivity().getSharedPreferences(getString(R.string.shared_pref_name), 0);
-        //templates = new Template[10];
-        templates = new Template[] {
-            new Template("Meeting", "In a meeting, text you in a bit!", true),
-            new Template("Shower", "In the shower, I'll text you when I get out", false),
-            new Template("Lost", "I lost my phone, I'll be sure to reply when I find it", false),
-        };
+        templates = new TemplateCollection();
+        templates.fetch();
+
     }
 
     @Override
@@ -96,13 +93,13 @@ public class MainFragment extends SherlockFragment {
     }
 
     public Template getSelectedTemplate() {
-        for (Template t : templates) {
+        for (Template t : templates.templates) {
             if (t.isSelected()) {
                 return t;
             }
         }
         // if no template is selected, assume first template selected
-        templates[0].setSelected(true);
-        return templates[0];
+        templates.templates.get(0).setSelected(true);
+        return templates.templates.get(0);
     }
 }

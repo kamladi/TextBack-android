@@ -1,5 +1,6 @@
 package com.pennappsf13.cmu.TextBack;
 
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
@@ -42,12 +43,6 @@ public class MainFragment extends SherlockFragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);    //To change body of overridden methods use File | Settings | File Templates.
-        if(savedInstanceState != null) {
-            pin = savedInstanceState.getString("pin", "LOL");
-            if(pin == "LOL") {
-                //TODO: prompt for pin, maybe via popup?
-            }
-        }
         mPreferences = getActivity().getSharedPreferences(getString(R.string.shared_pref_name), 0);
 
         mTemplates = TemplateCollection.get(getActivity());
@@ -65,12 +60,28 @@ public class MainFragment extends SherlockFragment {
         Template selectedTemplate = mTemplates.getSelectedTemplate();
         currTemplateField.setText(selectedTemplate.getText());
 
+        //set up click listener to go to templateList
+        currTemplateField.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Log.i(TAG, "clicked template ");
+                Intent i = new Intent(getActivity(), TemplateList.class);
+                startActivity(i);
+            }
+        });
+
         mToggle = (ToggleButton) v.findViewById(R.id.main_toggle);
         if (mPreferences.getBoolean(onFlag, false)) {
             mToggle.setChecked(true);
         } else {
             mToggle.setChecked(false);
         }
+
+        pin = mPreferences.getString("pin", "LOL");
+        if(pin == "LOL") {
+            //TODO: prompt for pin, maybe via popup?
+        }
+        templates.fetch();
 
         mToggle.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             private String onFlag = getString(R.string.pref_is_on);
@@ -85,6 +96,7 @@ public class MainFragment extends SherlockFragment {
                 } else {
                     SharedPreferences.Editor e = mPreferences.edit();
                     e.putBoolean(onFlag, false);
+                    e.putString("pin", pin);
                     e.commit();
                     Log.i(TAG, "turing off. isOn = " + mPreferences.getBoolean(onFlag, false));
                 }
@@ -96,7 +108,6 @@ public class MainFragment extends SherlockFragment {
     @Override
     public void onSaveInstanceState(Bundle savedInstanceState) {
         super.onSaveInstanceState(savedInstanceState);
-        savedInstanceState.putString("pin", pin);
     }
 
     @Override

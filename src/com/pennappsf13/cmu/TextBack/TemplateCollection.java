@@ -31,7 +31,6 @@ public class TemplateCollection {
     private TemplateJSONSerializer mSerializer;
 
     private TemplateCollection(Context appContext) {
-        Log.i(TAG, "Creating a new TemplateCollection");
         mContext = appContext;
         this.fetch();
     }

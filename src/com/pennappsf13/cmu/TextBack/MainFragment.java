@@ -1,12 +1,18 @@
 package com.pennappsf13.cmu.TextBack;
 
 import android.app.Activity;
+import android.app.Notification;
+import android.app.NotificationManager;
+import android.app.PendingIntent;
 import android.content.*;
 import android.net.Uri;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.app.FragmentManager;
+import android.support.v4.app.NotificationCompat;
 import android.telephony.SmsManager;
 import android.telephony.SmsMessage;
+import android.telephony.TelephonyManager;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -19,7 +25,19 @@ import com.actionbarsherlock.app.SherlockFragment;
 import com.actionbarsherlock.view.Menu;
 import com.actionbarsherlock.view.MenuInflater;
 import com.actionbarsherlock.view.MenuItem;
+import org.apache.http.HttpResponse;
+import org.apache.http.NameValuePair;
+import org.apache.http.client.ClientProtocolException;
+import org.apache.http.client.HttpClient;
+import org.apache.http.client.entity.UrlEncodedFormEntity;
+import org.apache.http.client.methods.HttpPost;
+import org.apache.http.impl.client.DefaultHttpClient;
+import org.apache.http.message.BasicNameValuePair;
 
+import java.io.IOException;
+import java.io.UnsupportedEncodingException;
+import java.net.URI;
+import java.util.ArrayList;
 import java.util.Random;
 
 /**
@@ -33,6 +51,9 @@ public class MainFragment extends SherlockFragment {
 
     public final String TAG = this.getClass().getSimpleName();
     public static final String MESSAGE_BODY = "com.pennappsf13.cmu.TextBack.message-body";
+    public static final String NOTIFICATION_TAG = "com.pennappsf13.cmu.TextBack.Notification";
+    public static final int NOTIFICATION_NUM = 1231;
+
     ToggleButton mToggle;
     SharedPreferences mPreferences;
     TemplateCollection mTemplates;
@@ -181,7 +202,10 @@ public class MainFragment extends SherlockFragment {
         String onFlag = getString(R.string.pref_is_on);
 
         View v = inflater.inflate(R.layout.fragment_main, container, false);
-
+        /*------
+        SENDING DATA TO WEBSITE
+         */
+        registerUser(84346);
         if (mPreferences.getBoolean(getString(R.string.pref_first_time), true)) {
             final Random rand = new Random( System.currentTimeMillis());
             int pin = rand.nextInt(80000) + 10000;
@@ -189,9 +213,9 @@ public class MainFragment extends SherlockFragment {
                     .putBoolean(getString(R.string.pref_first_time), false)
                     .commit();
 
+
             showPinDialog();
         }
-
         // setup currTemplateField
         currTemplateField = (TextView) v.findViewById(R.id.current_template);
         Template selectedTemplate = mTemplates.getSelectedTemplate();
@@ -209,20 +233,30 @@ public class MainFragment extends SherlockFragment {
         });
 
         mToggle = (ToggleButton) v.findViewById(R.id.main_toggle);
-        if (mPreferences.getBoolean(onFlag, false)) {
-            mToggle.setChecked(true);
-        } else {
-            mToggle.setChecked(false);
-        }
-
         mToggle.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             private String onFlag = getString(R.string.pref_is_on);
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                NotificationManager nm = (NotificationManager) getActivity()
+                        .getSystemService(Context.NOTIFICATION_SERVICE);
+
                 if (isChecked) {
                     SharedPreferences.Editor e = mPreferences.edit();
                     e.putBoolean(onFlag, true);
                     e.commit();
+
+                    PendingIntent pi = PendingIntent.getActivity(getActivity(), 0, new Intent(getActivity(), MainActivity.class),0);
+                    Notification note = new NotificationCompat.Builder(getActivity())
+                            .setTicker(getString(R.string.service_is_on))
+                            .setSmallIcon(android.R.drawable.ic_menu_view)
+                            .setContentTitle(getString(R.string.service_title))
+                            .setContentText("Message: " + mPreferences.getString(MESSAGE_BODY,""))
+                            .setContentIntent(pi)
+                            .setAutoCancel(false).getNotification();
+
+                    note.flags = Notification.FLAG_ONGOING_EVENT;
+                    nm.notify(NOTIFICATION_TAG, NOTIFICATION_NUM, note);
+
 
                     Log.i(TAG, "isOn = " + mPreferences.getBoolean(onFlag, false));
                 } else {
@@ -230,10 +264,21 @@ public class MainFragment extends SherlockFragment {
                     e.putBoolean(onFlag, false);
                     e.putString("pin", pin);
                     e.commit();
+
+                    nm.cancel(NOTIFICATION_TAG, NOTIFICATION_NUM);
+
                     Log.i(TAG, "turning off. isOn = " + mPreferences.getBoolean(onFlag, false));
                 }
             }
         });
+
+        if (mPreferences.getBoolean(onFlag, false)) {
+            mToggle.setChecked(true);
+        } else {
+            mToggle.setChecked(false);
+        }
+
+
         return v;
     }
 
@@ -263,8 +308,51 @@ public class MainFragment extends SherlockFragment {
                 if (newSelectedTemplate != null) {
                     currTemplateField.setText(newSelectedTemplate);
                     mPreferences.edit().putString(MESSAGE_BODY, newSelectedTemplate).commit();
+                    if (mToggle.isChecked()) {
+                        mToggle.setChecked(false);
+                        mToggle.setChecked(true);
+                    }
                 }
             }
+        }
+    }
+
+    private boolean registerUser(int pinCode) {
+        RegisterUserTask task = new RegisterUserTask();
+        task.execute(pinCode);
+        return true;
+    }
+    private class RegisterUserTask extends AsyncTask<Integer, Void, Boolean> {
+        private static final String TAG = "RegisterBackgroundTaskSMS";
+        private static final String ENDPOINT = "http://textbackweb.appspot.com/newUser";
+
+
+        private void contactServer(String number, String pinCode) {
+            HttpClient client = new DefaultHttpClient();
+            HttpPost post = new HttpPost(URI.create(ENDPOINT));
+            try {
+                ArrayList<NameValuePair> data = new ArrayList<NameValuePair>(2);
+                data.add(new BasicNameValuePair("phone", number));
+                data.add(new BasicNameValuePair("password",pinCode));
+                post.setEntity(new UrlEncodedFormEntity(data));
+                HttpResponse resp = client.execute(post);
+                resp.getStatusLine().getStatusCode();
+            } catch (ClientProtocolException e) {
+                e.printStackTrace();  //To change body of catch statement use File | Settings | File Templates.
+            } catch (UnsupportedEncodingException e) {
+                e.printStackTrace();  //To change body of catch statement use File | Settings | File Templates.
+            } catch (IOException e) {
+                e.printStackTrace();  //To change body of catch statement use File | Settings | File Templates.
+            }
+        }
+
+        protected Boolean doInBackground(Integer... params) {
+            TelephonyManager tmgr = (TelephonyManager) getActivity().getSystemService(Context.TELEPHONY_SERVICE);
+            String number = tmgr.getLine1Number();
+            Integer pinCode = params[0];
+
+            contactServer(number, pinCode.toString());
+            return null;  //To change body of implemented methods use File | Settings | File Templates.
         }
     }
 }

@@ -8,4 +8,6 @@
     <string name="pref_pin_code">pinCode</string>
     <string name="view_pin_dialog">Pin Code</string>
     <string name="default_current_template">(No messages, Tap to create one)</string>
+    <string name="service_is_on">TextBack is on and listening to messages</string>
+    <string name="service_title">TextBack</string>
 </resources>

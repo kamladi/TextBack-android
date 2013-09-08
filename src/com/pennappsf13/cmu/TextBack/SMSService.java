@@ -1,8 +1,10 @@
 package com.pennappsf13.cmu.TextBack;
 
 import android.app.IntentService;
-import android.content.Intent;
+import android.app.PendingIntent;
+import android.content.*;
 import android.telephony.SmsManager;
+import android.telephony.SmsMessage;
 import android.util.Log;
 
 /**
@@ -20,11 +22,17 @@ public class SMSService extends IntentService {
         super(TAG);
         mSmsManager = SmsManager.getDefault();
     }
+
     @Override
     protected void onHandleIntent(Intent intent) {
         Log.i(TAG, "Received an intent:" + intent);
+
+        PendingIntent piSent=PendingIntent.getBroadcast(this, 0, new Intent("SMS_SENT"), 0);
+        PendingIntent piDelivered= PendingIntent.getBroadcast(this, 0, new Intent("SMS_DELIVERED"), 0);
+
         String numba = intent.getStringExtra(SMSReceiver.EXTRA_SENDEE_NUMBER);
         String body = intent.getStringExtra(SMSReceiver.EXTRA_MESSAGE_BODY);
-        mSmsManager.sendTextMessage(numba, null, body, null, null );
+        mSmsManager.sendTextMessage(numba, null, body, piSent, piDelivered );
     }
+
 }

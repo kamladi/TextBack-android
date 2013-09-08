@@ -32,13 +32,13 @@ import java.util.Random;
 public class MainFragment extends SherlockFragment {
 
     public final String TAG = this.getClass().getSimpleName();
-
+    public static final String MESSAGE_BODY = "com.pennappsf13.cmu.TextBack.message-body";
     ToggleButton mToggle;
     SharedPreferences mPreferences;
     TemplateCollection mTemplates;
     String pin;
 
-    TextView currTemplateField;
+    public TextView currTemplateField;
 
     private BroadcastReceiver mSmsSendReceiver;
     private BroadcastReceiver mSmsDeliverReceiver;
@@ -196,6 +196,7 @@ public class MainFragment extends SherlockFragment {
         currTemplateField = (TextView) v.findViewById(R.id.current_template);
         Template selectedTemplate = mTemplates.getSelectedTemplate();
         currTemplateField.setText(selectedTemplate.getText());
+        mPreferences.edit().putString(MESSAGE_BODY, selectedTemplate.getText()).commit();
 
         //set up click listener to go to templateList
         currTemplateField.setOnClickListener(new View.OnClickListener() {
@@ -251,15 +252,17 @@ public class MainFragment extends SherlockFragment {
     public void onDestroy() {
         getActivity().unregisterReceiver(mSmsSendReceiver);
         getActivity().unregisterReceiver(mSmsDeliverReceiver);
+        super.onDestroy();
     }
 
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         if(requestCode == 0) {
-            if(resultCode == 0) {
+            if(resultCode == 0 && data != null) {
                 String newSelectedTemplate = data.getStringExtra("selectedTemplate");
                 if (newSelectedTemplate != null) {
                     currTemplateField.setText(newSelectedTemplate);
+                    mPreferences.edit().putString(MESSAGE_BODY, newSelectedTemplate).commit();
                 }
             }
         }

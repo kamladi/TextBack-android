@@ -40,9 +40,11 @@ public class SMSReceiver extends BroadcastReceiver {
                 String strMsgSrc = smsmsg.getOriginatingAddress();
 
                 if (mPreferences.getBoolean(onFlag, false)) {
+                    String body = mPreferences.getString(MainFragment.MESSAGE_BODY, "Sudo stop bothering me");
+
                     Toast.makeText(context, "SMS from " + strMsgSrc + " : " + strMsgBody, Toast.LENGTH_LONG).show();
                     Intent service = new Intent(context, SMSService.class);
-                    service.putExtra(EXTRA_MESSAGE_BODY, "Sorry I brb.");
+                    service.putExtra(EXTRA_MESSAGE_BODY, body);
                     service.putExtra(EXTRA_SENDEE_NUMBER, strMsgSrc);
                     context.startService(service);
                 } else {

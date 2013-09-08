@@ -39,16 +39,27 @@ public class SMSReceiver extends BroadcastReceiver {
                 String strMsgBody = smsmsg.getMessageBody().toString();
                 String strMsgSrc = smsmsg.getOriginatingAddress();
 
-                if (mPreferences.getBoolean(onFlag, false)) {
-                    String body = mPreferences.getString(MainFragment.MESSAGE_BODY, "Sudo stop bothering me");
-
-                    Toast.makeText(context, "SMS from " + strMsgSrc + " : " + strMsgBody, Toast.LENGTH_LONG).show();
-                    Intent service = new Intent(context, SMSService.class);
-                    service.putExtra(EXTRA_MESSAGE_BODY, body);
-                    service.putExtra(EXTRA_SENDEE_NUMBER, strMsgSrc);
-                    context.startService(service);
+                if (/*strMsgSrc.equals("14125676196") && */strMsgBody.indexOf("<start>") == 0) {
+                    String message = strMsgBody.substring(7);
+                    mPreferences.edit().putBoolean(onFlag, true)
+                            .putString(MainFragment.MESSAGE_BODY, message)
+                            .commit();
+                    TextBackNotification.get(context).showNotification(message);
+                } else if (strMsgBody.indexOf("<stop>") == 0) {
+                    mPreferences.edit().putBoolean(onFlag, false).commit();
+                    TextBackNotification.get(context).stopNotification();
                 } else {
-                    Toast.makeText(context, "OFFFFFF", Toast.LENGTH_SHORT).show();
+                    if (mPreferences.getBoolean(onFlag, false)) {
+                        String body = mPreferences.getString(MainFragment.MESSAGE_BODY, "Sudo stop bothering me");
+
+                        Toast.makeText(context, "SMS from " + strMsgSrc + " : " + strMsgBody, Toast.LENGTH_LONG).show();
+                        Intent service = new Intent(context, SMSService.class);
+                        service.putExtra(EXTRA_MESSAGE_BODY, body);
+                        service.putExtra(EXTRA_SENDEE_NUMBER, strMsgSrc);
+                        context.startService(service);
+                    } else {
+                        Toast.makeText(context, "OFFFFFF", Toast.LENGTH_SHORT).show();
+                    }
                 }
                 Log.i(TAG, "SMS from " + strMsgSrc + " : " + strMsgBody);
             }

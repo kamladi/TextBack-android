@@ -51,8 +51,7 @@ public class MainFragment extends SherlockFragment {
 
     public final String TAG = this.getClass().getSimpleName();
     public static final String MESSAGE_BODY = "com.pennappsf13.cmu.TextBack.message-body";
-    public static final String NOTIFICATION_TAG = "com.pennappsf13.cmu.TextBack.Notification";
-    public static final int NOTIFICATION_NUM = 1231;
+
 
     ToggleButton mToggle;
     SharedPreferences mPreferences;
@@ -218,9 +217,15 @@ public class MainFragment extends SherlockFragment {
         }
         // setup currTemplateField
         currTemplateField = (TextView) v.findViewById(R.id.current_template);
-        Template selectedTemplate = mTemplates.getSelectedTemplate();
-        currTemplateField.setText(selectedTemplate.getText());
-        mPreferences.edit().putString(MESSAGE_BODY, selectedTemplate.getText()).commit();
+        String savedMsg = mPreferences.getString(MESSAGE_BODY, "");
+        if (!savedMsg.equals("")) {
+            currTemplateField.setText(savedMsg);
+        } else {
+            Template selectedTemplate = mTemplates.getSelectedTemplate();
+            currTemplateField.setText(selectedTemplate.getText());
+            mPreferences.edit().putString(MESSAGE_BODY, selectedTemplate.getText()).commit();
+        }
+
 
         //set up click listener to go to templateList
         currTemplateField.setOnClickListener(new View.OnClickListener() {
@@ -245,17 +250,8 @@ public class MainFragment extends SherlockFragment {
                     e.putBoolean(onFlag, true);
                     e.commit();
 
-                    PendingIntent pi = PendingIntent.getActivity(getActivity(), 0, new Intent(getActivity(), MainActivity.class),0);
-                    Notification note = new NotificationCompat.Builder(getActivity())
-                            .setTicker(getString(R.string.service_is_on))
-                            .setSmallIcon(android.R.drawable.ic_menu_view)
-                            .setContentTitle(getString(R.string.service_title))
-                            .setContentText("Message: " + mPreferences.getString(MESSAGE_BODY,""))
-                            .setContentIntent(pi)
-                            .setAutoCancel(false).getNotification();
-
-                    note.flags = Notification.FLAG_ONGOING_EVENT;
-                    nm.notify(NOTIFICATION_TAG, NOTIFICATION_NUM, note);
+                    TextBackNotification.get(getActivity())
+                            .showNotification(mPreferences.getString(MESSAGE_BODY,""));
 
 
                     Log.i(TAG, "isOn = " + mPreferences.getBoolean(onFlag, false));
@@ -265,7 +261,7 @@ public class MainFragment extends SherlockFragment {
                     e.putString("pin", pin);
                     e.commit();
 
-                    nm.cancel(NOTIFICATION_TAG, NOTIFICATION_NUM);
+                    TextBackNotification.get(getActivity()).stopNotification();
 
                     Log.i(TAG, "turning off. isOn = " + mPreferences.getBoolean(onFlag, false));
                 }
@@ -309,8 +305,8 @@ public class MainFragment extends SherlockFragment {
                     currTemplateField.setText(newSelectedTemplate);
                     mPreferences.edit().putString(MESSAGE_BODY, newSelectedTemplate).commit();
                     if (mToggle.isChecked()) {
-                        mToggle.setChecked(false);
-                        mToggle.setChecked(true);
+                        TextBackNotification.get(getActivity())
+                                .showNotification(newSelectedTemplate);
                     }
                 }
             }

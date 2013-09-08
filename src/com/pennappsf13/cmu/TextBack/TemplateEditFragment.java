@@ -30,9 +30,6 @@ public class TemplateEditFragment extends SherlockFragment {
 
     Template editingTemplate;
 
-    EditText editTitle;
-    EditText editText;
-    Button saveButton;
 
     public static TemplateEditFragment newInstance() {
         Bundle args = new Bundle();
@@ -61,9 +58,9 @@ public class TemplateEditFragment extends SherlockFragment {
         View v = inflater.inflate(R.layout.fragment_template_edit, container, false);
 
         // Setup UI Elems
-        editTitle = (EditText) v.findViewById(R.id.editTitle);
-        editText = (EditText) v.findViewById(R.id.editText);
-        saveButton = (Button) v.findViewById(R.id.saveButton);
+        final EditText editTitle = (EditText) v.findViewById(R.id.editTitle);
+        final EditText editText = (EditText) v.findViewById(R.id.editText);
+        Button saveButton = (Button) v.findViewById(R.id.saveButton);
 
         editTitle.setText(editingTemplate.getTitle());
         editText.setText(editingTemplate.getText());
@@ -72,8 +69,10 @@ public class TemplateEditFragment extends SherlockFragment {
             @Override
             public void onClick(View v) {
                 Log.i(TAG, "clicked save button ");
-                editingTemplate.setTitle(editTitle.toString());
-                editingTemplate.setText(editText.toString());
+                String newTitle = editTitle.getText().toString();
+                String newText = editText.getText().toString();
+                editingTemplate.setTitle(newTitle);
+                editingTemplate.setText(newText);
                 TemplateCollection.get(getActivity()).saveTemplates();
                 getActivity().finish();
             }

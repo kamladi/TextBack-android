@@ -3,23 +3,34 @@
   android:layout_width="match_parent"
   android:layout_height="fill_parent"
   android:orientation="vertical"
-  android:baselineAligned="false">
+  android:baselineAligned="false" android:background="#E8E5C1">
     <TextView
         android:layout_width="fill_parent"
         android:layout_height="42dp"
         android:text="Current Reply Message"
         style="?android:listSeparatorTextViewStyle"
-        android:gravity="bottom" android:paddingBottom="5px"/>
+        android:gravity="bottom" android:paddingBottom="5px" android:textColor="#333333"/>
+    <Space
+            android:layout_width="fill_parent"
+            android:layout_height="20px"
+            android:id="@+id/space1"/>
     <TextView
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:text="@string/default_current_template"
-            android:id="@+id/current_template" android:autoText="false" android:textSize="20px" android:background="#c4cdca"
-            android:textColor="#212328" android:padding="10px" android:ellipsize="end" android:clickable="true"/>
-    <ToggleButton
+            android:id="@+id/current_template" android:autoText="false" android:textSize="30px" android:background="#6CCD8C"
+            android:textColor="#ffffff" android:padding="10px" android:ellipsize="end" android:clickable="true"/>
+    <Space
             android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="210dp"
+            android:id="@+id/space"/>
+    <ToggleButton
+            android:layout_width="400px"
+            android:layout_height="200px"
             android:text="Start"
-            android:id="@+id/main_toggle"/>
+            android:id="@+id/main_toggle" android:textOff="Tap to Start Auto-Replying" android:textOn="Tap to Stop Auto-Replying"
+            android:layout_gravity="center_horizontal" android:enabled="true" android:singleLine="true"
+            android:background="@drawable/main_toggle_colors" android:textColor="#ffffff" android:textStyle="bold" android:clickable="true"
+            android:checked="false" android:textSize="30px" android:layout_marginBottom="25px"/>
 </LinearLayout>
 

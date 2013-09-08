@@ -33,14 +33,7 @@ public class TemplateCollection {
     private TemplateCollection(Context appContext) {
         Log.i(TAG, "Creating a new TemplateCollection");
         mContext = appContext;
-        mSerializer = new TemplateJSONSerializer(mContext, FILENAME);
-        try {
-            mTemplates = mSerializer.readTemplates();
-            Log.i(TAG, "Templates loaded. Found " + mTemplates.size());
-        } catch (Exception e) {
-            Log.e(TAG, "Cannot load saved templates");
-            mTemplates = new ArrayList<Template>();
-        }
+        this.fetch();
     }
 
     public static TemplateCollection get(Context c) {
@@ -52,12 +45,19 @@ public class TemplateCollection {
     }
 
     public void fetch() {
-        /*
-        TODO: http shit
-         */
-        mTemplates.add(new Template("Meeting", "In a meeting, text you in a bit!", false));
+        this.mTemplates = new ArrayList<Template>();
+        mTemplates.add(new Template("Meeting", "In a meeting, text you in a bit!", true));
         mTemplates.add(new Template("Shower", "In the shower, I'll text you when I get out", false));
         mTemplates.add(new Template("Lost", "I lost my phone, I'll be sure to reply when I find it", false));
+        /*
+        mSerializer = new TemplateJSONSerializer(mContext, FILENAME);
+        try {
+            this.mTemplates = mSerializer.readTemplates();
+            Log.i(TAG, "Templates loaded. Found " + mTemplates.size());
+        } catch (Exception e) {
+            Log.e(TAG, "Cannot load saved templates");
+            this.mTemplates = new ArrayList<Template>();
+        }     */
     }
 
     public void addTemplate(Template t) {

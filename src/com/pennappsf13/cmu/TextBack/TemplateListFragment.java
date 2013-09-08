@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.content.Context;
 import android.view.ViewGroup;
 import android.widget.*;
 import com.actionbarsherlock.app.SherlockListFragment;
@@ -37,14 +38,26 @@ public class TemplateListFragment extends SherlockListFragment {
 
         TemplateAdapter adapter = new TemplateAdapter(mTemplates);
         setListAdapter(adapter);
-
-
     }
 
     @Override
     public void onListItemClick(ListView l, View v, int position, long id) {
         Template t = (Template)(getListAdapter()).getItem(position);
+        if(!t.getSelected()) {
+            TemplateCollection.get(getActivity()).getSelectedTemplate().setSelected(false);
+            t.setSelected(true);
+        }
         Log.i(TAG, "Template t: " + t.getTitle() + " was clicked!" );
+
+        CharSequence toastMsg = "Updating your auto-reply message...";
+        Context c = getActivity().getApplicationContext();
+        int duration = Toast.LENGTH_SHORT;
+        Toast.makeText(c, toastMsg, duration).show();
+
+        getActivity().getIntent().putExtra("selectedTemplate",t.getText());
+        getActivity().setResult(0, getActivity().getIntent());
+        getActivity().finish();
+        return;
     }
 
     @Override
@@ -56,7 +69,9 @@ public class TemplateListFragment extends SherlockListFragment {
             public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
                 Template t = (Template)(getListAdapter()).getItem(position);
                 Log.i(TAG, "Template t: " + t.getTitle() + " was long clicked!" );
-
+                Intent i = new Intent(getActivity(), TemplateEditActivity.class);
+                i.putExtra("templateTitle", t.getTitle());
+                startActivity(i);
                 return true;
             }
         });

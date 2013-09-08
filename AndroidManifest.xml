@@ -18,6 +18,7 @@
             </intent-filter>
         </activity>
         <activity android:name=".TemplateListActivity"/>
+        <activity android:name=".TemplateEditActivity"/>
 
         <receiver android:name=".SMSReceiver" android:exported="true" >
             <intent-filter>

@@ -66,7 +66,7 @@ public class MainFragment extends SherlockFragment {
             public void onClick(View v) {
                 Log.i(TAG, "clicked template ");
                 Intent i = new Intent(getActivity(), TemplateListActivity.class);
-                startActivity(i);
+                startActivityForResult(i, 0);
             }
         });
 
@@ -98,7 +98,7 @@ public class MainFragment extends SherlockFragment {
                     e.putBoolean(onFlag, false);
                     e.putString("pin", pin);
                     e.commit();
-                    Log.i(TAG, "turing off. isOn = " + mPreferences.getBoolean(onFlag, false));
+                    Log.i(TAG, "turning off. isOn = " + mPreferences.getBoolean(onFlag, false));
                 }
             }
         });
@@ -114,5 +114,17 @@ public class MainFragment extends SherlockFragment {
     public void onPause() {
         super.onPause();
         mTemplates.saveTemplates();
+    }
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if(requestCode == 0) {
+            if(resultCode == 0) {
+                String newSelectedTemplate = data.getStringExtra("selectedTemplate");
+                if (newSelectedTemplate != null) {
+                    currTemplateField.setText(newSelectedTemplate);
+                }
+            }
+        }
     }
 }

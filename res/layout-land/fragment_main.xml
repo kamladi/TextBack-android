@@ -18,19 +18,19 @@
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:text="@string/default_current_template"
-            android:id="@+id/current_template" android:autoText="false" android:textSize="30px" android:background="#6CCD8C"
+            android:id="@+id/current_template" android:autoText="false" android:textSize="20dp" android:background="#6CCD8C"
             android:textColor="#ffffff" android:padding="10px" android:ellipsize="end" android:clickable="true"/>
     <Space
             android:layout_width="fill_parent"
             android:layout_height="20dp"
             android:id="@+id/space"/>
     <ToggleButton
-            android:layout_width="400px"
-            android:layout_height="200px"
+            android:layout_width="275dp"
+            android:layout_height="100dp"
             android:text="Start"
             android:id="@+id/main_toggle" android:textOff="Tap to Start Auto-Replying" android:textOn="Tap to Stop Auto-Replying"
             android:layout_gravity="center_horizontal" android:enabled="true" android:singleLine="true"
             android:background="@drawable/main_toggle_colors" android:textColor="#ffffff" android:textStyle="bold" android:clickable="true"
-            android:checked="false" android:textSize="30px" android:layout_marginBottom="25px"/>
+            android:checked="false" android:textSize="20dp" android:layout_marginBottom="15dp"/>
 </LinearLayout>
 

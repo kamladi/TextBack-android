@@ -1,15 +1,19 @@
 package com.pennappsf13.cmu.TextBack;
 
-import android.content.Intent;
-import android.content.SharedPreferences;
+import android.app.Activity;
+import android.content.*;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.FragmentManager;
+import android.telephony.SmsManager;
+import android.telephony.SmsMessage;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.CompoundButton;
 import android.widget.TextView;
+import android.widget.Toast;
 import android.widget.ToggleButton;
 import com.actionbarsherlock.app.SherlockFragment;
 import com.actionbarsherlock.view.Menu;
@@ -35,6 +39,9 @@ public class MainFragment extends SherlockFragment {
     String pin;
 
     TextView currTemplateField;
+
+    private BroadcastReceiver mSmsSendReceiver;
+    private BroadcastReceiver mSmsDeliverReceiver;
 
     public static MainFragment newInstance() {
         Bundle args = new Bundle();
@@ -78,6 +85,94 @@ public class MainFragment extends SherlockFragment {
         mPreferences = getActivity().getSharedPreferences(getString(R.string.shared_pref_name), 0);
 
         mTemplates = TemplateCollection.get(getActivity());
+
+
+        mSmsSendReceiver = new BroadcastReceiver() {
+            private boolean doThings() {
+                SharedPreferences p = getActivity().getSharedPreferences(getString(R.string.shared_pref_name), 0);
+                return p.getBoolean(getString(R.string.pref_is_on), false);
+            }
+
+            @Override
+            public void onReceive(Context context, Intent intent) {
+                if (doThings()) {
+                    switch(getResultCode()) {
+                        case Activity.RESULT_OK:
+                            Toast.makeText(getActivity(), "SMS has been sent", Toast.LENGTH_SHORT).show();
+                            break;
+                        case SmsManager.RESULT_ERROR_GENERIC_FAILURE:
+                            Toast.makeText(getActivity(), "Generic Failure", Toast.LENGTH_SHORT).show();
+                            break;
+                        case SmsManager.RESULT_ERROR_NO_SERVICE:
+                            Toast.makeText(getActivity(), "No Service", Toast.LENGTH_SHORT).show();
+                            break;
+                        case SmsManager.RESULT_ERROR_NULL_PDU:
+                            Toast.makeText(getActivity(), "Null PDU", Toast.LENGTH_SHORT).show();
+                            break;
+                        case SmsManager.RESULT_ERROR_RADIO_OFF:
+                            Toast.makeText(getActivity(), "Radio Off", Toast.LENGTH_SHORT).show();
+                            break;
+                        default:
+                            break;
+                    }
+                }
+            }
+        };
+        mSmsDeliverReceiver = new BroadcastReceiver() {
+            public static final String SMS_URI = "content://sms";
+            public static final String ADDRESS = "address";
+            public static final String PERSON = "person";
+            public static final String DATE = "date";
+            public static final String READ = "read";
+            public static final String STATUS = "status";
+            public static final String TYPE = "type";
+            public static final String BODY = "body";
+            public static final String SEEN = "seen";
+
+            public static final int MESSAGE_TYPE_SENT = 2;
+
+            public static final int MESSAGE_IS_NOT_READ = 0;
+            public static final int MESSAGE_IS_NOT_SEEN = 0;
+
+            private boolean doThings() {
+                SharedPreferences p = getActivity().getSharedPreferences(getString(R.string.shared_pref_name), 0);
+                return p.getBoolean(getString(R.string.pref_is_on), false);
+            }
+
+            public void putIntoDatabase(ContentResolver resolver, SmsMessage msg) {
+                ContentValues values = new ContentValues();
+                values.put( ADDRESS, msg.getOriginatingAddress() );
+                values.put(DATE, msg.getTimestampMillis());
+                values.put( READ, MESSAGE_IS_NOT_READ );
+                values.put(STATUS, msg.getStatus());
+                values.put( TYPE, MESSAGE_TYPE_SENT );
+                values.put( SEEN, MESSAGE_IS_NOT_SEEN );
+                values.put( BODY, msg.getMessageBody());
+                resolver.insert(Uri.parse(SMS_URI), values);
+            }
+
+            @Override
+            public void onReceive(Context context, Intent intent) {
+                if (doThings()) {
+                    switch(getResultCode()) {
+                        case Activity.RESULT_OK:
+                            Toast.makeText(getActivity(), "SMS Delivered", Toast.LENGTH_SHORT).show();
+                            Bundle extras = intent.getExtras();
+                            Object pdu = extras.get("pdu");
+                            SmsMessage msg = SmsMessage.createFromPdu((byte[]) pdu);
+                            putIntoDatabase(context.getContentResolver(), msg);
+                            break;
+                        case Activity.RESULT_CANCELED:
+                            Toast.makeText(getActivity(), "SMS not delivered", Toast.LENGTH_SHORT).show();
+                            break;
+                    }
+                }
+            }
+        };
+
+        getActivity().registerReceiver(mSmsSendReceiver, new IntentFilter("SMS_SENT"));
+        getActivity().registerReceiver(mSmsDeliverReceiver, new IntentFilter("SMS_DELIVERED"));
+
     }
 
     @Override
@@ -150,5 +245,11 @@ public class MainFragment extends SherlockFragment {
     public void onPause() {
         super.onPause();
         mTemplates.saveTemplates();
+    }
+
+    @Override
+    public void onDestroy() {
+        getActivity().unregisterReceiver(mSmsSendReceiver);
+        getActivity().unregisterReceiver(mSmsDeliverReceiver);
     }
 }

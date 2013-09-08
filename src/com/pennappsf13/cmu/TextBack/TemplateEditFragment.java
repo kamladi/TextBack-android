@@ -47,7 +47,12 @@ public class TemplateEditFragment extends SherlockFragment {
         mTemplates = TemplateCollection.get(getActivity()).getTemplates();
 
         String title = getActivity().getIntent().getStringExtra("templateTitle");
-        editingTemplate = TemplateCollection.get(getActivity()).getTemplate(title);
+        if (title.equals("")) {
+            editingTemplate = new Template("Custom",
+                    getActivity().getIntent().getStringExtra("templateText"), false);
+        } else {
+            editingTemplate = TemplateCollection.get(getActivity()).getTemplate(title);
+        }
     }
 
     @Override
@@ -65,22 +70,30 @@ public class TemplateEditFragment extends SherlockFragment {
         editTitle.setText(editingTemplate.getTitle());
         editText.setText(editingTemplate.getText());
 
-        saveButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Log.i(TAG, "clicked save button ");
-                String newTitle = editTitle.getText().toString();
-                String newText = editText.getText().toString();
-                editingTemplate.setTitle(newTitle);
-                editingTemplate.setText(newText);
-                TemplateCollection.get(getActivity()).saveTemplates();
-                getActivity().finish();
-            }
-        });
+        if(editingTemplate.getTitle().equals("Custom")) {
+            saveButton.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    getActivity().getIntent().putExtra("newText", editText.getText().toString());
+                    getActivity().setResult(0, getActivity().getIntent());
+                    getActivity().finish();
+                }
+            });
 
-        pin = mPreferences.getString("pin", "LOL");
-        if(pin == "LOL") {
-            //TODO: prompt for pin, maybe via popup?
+        } else {
+
+            saveButton.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Log.i(TAG, "clicked save button ");
+                    String newTitle = editTitle.getText().toString();
+                    String newText = editText.getText().toString();
+                    editingTemplate.setTitle(newTitle);
+                    editingTemplate.setText(newText);
+                    TemplateCollection.get(getActivity()).saveTemplates();
+                    getActivity().finish();
+                }
+            });
         }
 
         return v;

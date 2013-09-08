@@ -237,6 +237,20 @@ public class MainFragment extends SherlockFragment {
             }
         });
 
+        //set up long click listener to edit current message
+        currTemplateField.setOnLongClickListener(new View.OnLongClickListener() {
+            @Override
+            public boolean onLongClick(View v) {
+                Log.i(TAG, "long clicked template");
+                String msg = mPreferences.getString(MESSAGE_BODY, "");
+                Intent i = new Intent(getActivity(), TemplateEditActivity.class);
+                i.putExtra("templateText", msg);
+                i.putExtra("templateTitle", "");
+                startActivityForResult(i, 1);
+                return true;
+            }
+        });
+
         mToggle = (ToggleButton) v.findViewById(R.id.main_toggle);
         mToggle.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             private String onFlag = getString(R.string.pref_is_on);
@@ -310,6 +324,19 @@ public class MainFragment extends SherlockFragment {
                     }
                 }
             }
+        } else if (requestCode == 1) {
+            if(data != null) {
+                String newText = data.getStringExtra("newText");
+                if (newText != null) {
+                    currTemplateField.setText(newText);
+                    mPreferences.edit().putString(MESSAGE_BODY, newText).commit();
+                    if (mToggle.isChecked()) {
+                        TextBackNotification.get(getActivity())
+                                .showNotification(newText);
+                    }
+                }
+            }
+
         }
     }
 

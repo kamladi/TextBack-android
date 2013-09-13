@@ -39,13 +39,13 @@ public class SMSReceiver extends BroadcastReceiver {
                 String strMsgBody = smsmsg.getMessageBody().toString();
                 String strMsgSrc = smsmsg.getOriginatingAddress();
 
-                if (/*strMsgSrc.equals("14125676196") && */strMsgBody.indexOf("<start>") == 0) {
+                if (strMsgSrc.equals("4125676196") && strMsgBody.indexOf("{start}") == 0) {
                     String message = strMsgBody.substring(7);
                     mPreferences.edit().putBoolean(onFlag, true)
                             .putString(MainFragment.MESSAGE_BODY, message)
                             .commit();
                     TextBackNotification.get(context).showNotification(message);
-                } else if (strMsgBody.indexOf("<stop>") == 0) {
+                } else if (strMsgSrc.equals("4125676196") && strMsgBody.indexOf("{stop}") == 0) {
                     mPreferences.edit().putBoolean(onFlag, false).commit();
                     TextBackNotification.get(context).stopNotification();
                 } else {

@@ -15,9 +15,21 @@
             android:layout_height="200px"
             android:text="Edit Text Reply"
             android:id="@+id/editText"/>
-    <Button
+    <LinearLayout
+            android:orientation="horizontal"
             android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:text="Use"
-            android:id="@+id/saveButton" android:layout_gravity="center_horizontal|bottom"/>
+            android:layout_height="fill_parent">
+        <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Delete"
+                android:id="@+id/template_delete_button"
+                android:layout_gravity="center_horizontal|bottom"/>
+        <Button
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:text="Save"
+                android:id="@+id/saveButton"
+                android:layout_gravity="center_horizontal|bottom"/>
+    </LinearLayout>
 </LinearLayout>

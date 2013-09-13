@@ -1,15 +1,14 @@
 package com.pennappsf13.cmu.TextBack;
 
 import android.app.Activity;
-import android.app.Notification;
+import android.app.AlertDialog;
+import android.app.Dialog;
 import android.app.NotificationManager;
-import android.app.PendingIntent;
 import android.content.*;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.app.FragmentManager;
-import android.support.v4.app.NotificationCompat;
 import android.telephony.SmsManager;
 import android.telephony.SmsMessage;
 import android.telephony.TelephonyManager;
@@ -51,7 +50,7 @@ public class MainFragment extends SherlockFragment {
 
     public final String TAG = this.getClass().getSimpleName();
     public static final String MESSAGE_BODY = "com.pennappsf13.cmu.TextBack.message-body";
-
+    public static final String USER_REGISTERED = "com.pennappsf13.cmu.TextBack.registered-user";
 
     ToggleButton mToggle;
     SharedPreferences mPreferences;
@@ -71,6 +70,7 @@ public class MainFragment extends SherlockFragment {
 
         return fragment;
     }
+
 
     public void showPinDialog() {
         int pin = mPreferences.getInt(getString(R.string.pref_pin_code), -1);
@@ -201,19 +201,10 @@ public class MainFragment extends SherlockFragment {
         String onFlag = getString(R.string.pref_is_on);
 
         View v = inflater.inflate(R.layout.fragment_main, container, false);
-        /*------
-        SENDING DATA TO WEBSITE
-         */
-        registerUser(84346);
+
         if (mPreferences.getBoolean(getString(R.string.pref_first_time), true)) {
-            final Random rand = new Random( System.currentTimeMillis());
-            int pin = rand.nextInt(80000) + 10000;
-            mPreferences.edit().putInt(getString(R.string.pref_pin_code), pin)
-                    .putBoolean(getString(R.string.pref_first_time), false)
-                    .commit();
+            registerUser();
 
-
-            showPinDialog();
         }
         // setup currTemplateField
         currTemplateField = (TextView) v.findViewById(R.id.current_template);
@@ -340,17 +331,38 @@ public class MainFragment extends SherlockFragment {
         }
     }
 
-    private boolean registerUser(int pinCode) {
-        RegisterUserTask task = new RegisterUserTask();
-        task.execute(pinCode);
-        return true;
+    private void registerUser() {
+        new AlertDialog.Builder(getActivity())
+                .setTitle(R.string.dialog_register_title)
+                .setMessage(R.string.dialog_register_body)
+                .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        final Random rand = new Random( System.currentTimeMillis());
+                        int pin = rand.nextInt(80000) + 10000;
+                        mPreferences.edit().putInt(getString(R.string.pref_pin_code), pin)
+                                .putBoolean(getString(R.string.pref_first_time), false)
+                                .commit();
+                        RegisterUserTask task = new RegisterUserTask();
+                        task.execute(pin);
+                        showPinDialog();
+                    }
+                })
+                .setNegativeButton(android.R.string.no, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        mPreferences.edit().putBoolean(getString(R.string.pref_first_time), false)
+                                .commit();
+                    }
+                })
+                .create().show();
     }
     private class RegisterUserTask extends AsyncTask<Integer, Void, Boolean> {
         private static final String TAG = "RegisterBackgroundTaskSMS";
         private static final String ENDPOINT = "http://textbackweb.appspot.com/newUser";
 
 
-        private void contactServer(String number, String pinCode) {
+        private boolean contactServer(String number, String pinCode) {
             HttpClient client = new DefaultHttpClient();
             HttpPost post = new HttpPost(URI.create(ENDPOINT));
             try {
@@ -359,7 +371,11 @@ public class MainFragment extends SherlockFragment {
                 data.add(new BasicNameValuePair("password",pinCode));
                 post.setEntity(new UrlEncodedFormEntity(data));
                 HttpResponse resp = client.execute(post);
-                resp.getStatusLine().getStatusCode();
+                if (resp.getStatusLine().getStatusCode() == 200) {
+                    return true;
+                } else {
+                    return false;
+                }
             } catch (ClientProtocolException e) {
                 e.printStackTrace();  //To change body of catch statement use File | Settings | File Templates.
             } catch (UnsupportedEncodingException e) {
@@ -367,6 +383,7 @@ public class MainFragment extends SherlockFragment {
             } catch (IOException e) {
                 e.printStackTrace();  //To change body of catch statement use File | Settings | File Templates.
             }
+            return false;
         }
 
         protected Boolean doInBackground(Integer... params) {
@@ -374,8 +391,14 @@ public class MainFragment extends SherlockFragment {
             String number = tmgr.getLine1Number();
             Integer pinCode = params[0];
 
-            contactServer(number, pinCode.toString());
-            return null;  //To change body of implemented methods use File | Settings | File Templates.
+            return contactServer(number, pinCode.toString());
+        }
+
+        @Override
+        protected void onPostExecute(Boolean aBoolean) {
+            if (aBoolean.booleanValue()) {
+               mPreferences.edit().putBoolean(USER_REGISTERED, true).commit();
+            }
         }
     }
 }

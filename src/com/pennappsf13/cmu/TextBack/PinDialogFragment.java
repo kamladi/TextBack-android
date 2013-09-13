@@ -2,6 +2,8 @@ package com.pennappsf13.cmu.TextBack;
 
 import android.app.AlertDialog;
 import android.app.Dialog;
+import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import com.actionbarsherlock.app.SherlockDialogFragment;
@@ -30,10 +32,33 @@ public class PinDialogFragment extends SherlockDialogFragment {
     @Override
     public Dialog onCreateDialog(Bundle savedInstanceState) {
         int pinCode = getArguments().getInt(EXTRA_PIN);
+        Dialog d = null;
 
-        return new AlertDialog.Builder(getActivity())
-                .setTitle("Remote Access PIN Code")
-                .setMessage("Your pin number to start this app remotely is: " + pinCode + ".")
-                .create();
+        String message = "";
+        if (pinCode == -1) {
+            message = "You opted not to register, therefore you do not have a pin code.";
+            d =  new AlertDialog.Builder(getActivity())
+                    .setTitle("Remote Access PIN Code")
+                    .setMessage(message)
+                    .setPositiveButton(R.string.prompt_reset_pin, new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            getActivity().getSharedPreferences(getString(R.string.shared_pref_name), 0).edit()
+                                    .putBoolean(getString(R.string.pref_first_time), true).commit();
+                            Intent i = new Intent(getActivity(), MainActivity.class);
+                            startActivity(i);
+                        }
+                    })
+                    .create();
+        } else {
+            message = "Your pin number to start this app remotely is: " + pinCode + ".";
+            d =  new AlertDialog.Builder(getActivity())
+                    .setTitle("Remote Access PIN Code")
+                    .setMessage(message)
+                    .create();
+        }
+
+        return d;
+
     }
 }

@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:id="@+id/menu_new_template"
+          android:icon="@android:drawable/ic_menu_add"
+          android:title="@string/title_new_template"
+          android:showAsAction="ifRoom|withText" />
+    <item android:id="@+id/menu_get_templates"
+          android:icon="@android:drawable/stat_notify_sync_noanim"
+          android:title="@string/title_get_templates"
+          android:showAsAction="ifRoom|withText" />
+</menu>

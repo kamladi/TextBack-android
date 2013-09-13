@@ -1,13 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">TextBack-android</string>
+    <string name="app_name">TextBack</string>
     <string name="main_title_label">TextBack</string>
     <string name="shared_pref_name">TextBack.sharedPreferences</string>
     <string name="pref_is_on">isOn</string>
     <string name="pref_first_time">firstRun</string>
     <string name="pref_pin_code">pinCode</string>
     <string name="view_pin_dialog">Pin Code</string>
+    <string name="title_new_template">New Template</string>
+    <string name="title_get_templates">Sync Templates</string>
     <string name="default_current_template">(No messages, Tap to create one)</string>
     <string name="service_is_on">TextBack is on and listening to messages</string>
     <string name="service_title">TextBack</string>
+    <string name="dialog_register_title">Register?</string>
+    <string name="dialog_register_body">
+        TextBack has a web interface that allows you to remotely start the app.
+        Do you want to register? (Your phone number and a random PIN will be sent to the server).
+    </string>
+    <string name="prompt_reset_pin">Register</string>
+
 </resources>

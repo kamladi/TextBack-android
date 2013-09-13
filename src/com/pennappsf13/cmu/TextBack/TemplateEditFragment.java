@@ -3,6 +3,7 @@ package com.pennappsf13.cmu.TextBack;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.support.v4.app.NavUtils;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -11,6 +12,7 @@ import android.widget.EditText;
 import android.widget.Button;
 import com.actionbarsherlock.app.SherlockFragment;
 import com.actionbarsherlock.app.SherlockListFragment;
+import com.actionbarsherlock.view.MenuItem;
 
 import java.util.ArrayList;
 
@@ -29,6 +31,7 @@ public class TemplateEditFragment extends SherlockFragment {
     String pin;
 
     Template editingTemplate;
+    boolean mNew = false;
 
 
     public static TemplateEditFragment newInstance() {
@@ -41,18 +44,39 @@ public class TemplateEditFragment extends SherlockFragment {
     }
 
     @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case android.R.id.home:
+                NavUtils.navigateUpFromSameTask(getActivity());
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
+    }
+
+    @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);    //To change body of overridden methods use File | Settings | File Templates.
         mPreferences = getActivity().getSharedPreferences(getString(R.string.shared_pref_name), 0);
         mTemplates = TemplateCollection.get(getActivity()).getTemplates();
 
         String title = getActivity().getIntent().getStringExtra("templateTitle");
-        if (title.equals("")) {
-            editingTemplate = new Template("Custom",
-                    getActivity().getIntent().getStringExtra("templateText"), false);
+        if(title != null) {
+            if (title.equals("")) {
+                editingTemplate = new Template("Custom",
+                        getActivity().getIntent().getStringExtra("templateText"), false);
+            } else {
+                editingTemplate = TemplateCollection.get(getActivity()).getTemplate(title);
+            }
         } else {
-            editingTemplate = TemplateCollection.get(getActivity()).getTemplate(title);
+            //new template
+            editingTemplate = new Template("New Template", "", false);
+            TemplateCollection.get(getActivity()).addTemplate(editingTemplate);
+            mNew = true;
         }
+        setHasOptionsMenu(true);
+        getSherlockActivity().getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
     }
 
     @Override
@@ -66,11 +90,14 @@ public class TemplateEditFragment extends SherlockFragment {
         final EditText editTitle = (EditText) v.findViewById(R.id.editTitle);
         final EditText editText = (EditText) v.findViewById(R.id.editText);
         Button saveButton = (Button) v.findViewById(R.id.saveButton);
+        Button deleteButton = (Button) v.findViewById(R.id.template_delete_button);
+
 
         editTitle.setText(editingTemplate.getTitle());
         editText.setText(editingTemplate.getText());
 
         if(editingTemplate.getTitle().equals("Custom")) {
+            saveButton.setText("Use");
             saveButton.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
@@ -79,9 +106,23 @@ public class TemplateEditFragment extends SherlockFragment {
                     getActivity().finish();
                 }
             });
-
+            deleteButton.setText("Cancel");
+            deleteButton.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    getActivity().setResult(0, getActivity().getIntent());
+                    getActivity().finish();
+                }
+            });
         } else {
 
+            deleteButton.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    TemplateCollection.get(getActivity()).deleteTemplate(editingTemplate);
+                    getActivity().finish();
+                }
+            });
             saveButton.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {

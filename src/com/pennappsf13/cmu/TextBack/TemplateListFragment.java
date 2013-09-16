@@ -1,9 +1,11 @@
 package com.pennappsf13.cmu.TextBack;
 
+import android.app.Dialog;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.support.v4.app.FragmentManager;
 import android.support.v4.app.NavUtils;
 import android.telephony.TelephonyManager;
 import android.util.Log;
@@ -153,8 +155,14 @@ public class TemplateListFragment extends SherlockListFragment {
 
     private void mergeServerTemplates() {
         FetchingServerTemplatesTask task = new FetchingServerTemplatesTask();
-        Integer pin = new Integer(mPreferences.getInt(getString(R.string.pref_pin_code), -1));
-        task.execute(pin);
+        int pin = mPreferences.getInt(getString(R.string.pref_pin_code), -1);
+        if (pin == -1) {
+            PinDialogFragment d = PinDialogFragment.newInstance(pin, "Can't get server templates because you chose not to register.");
+            FragmentManager fm = getSherlockActivity().getSupportFragmentManager();
+            d.show(fm, "OOPSDIALOG");
+        } else {
+            task.execute(pin);
+        }
     }
 
     private class FetchingServerTemplatesTask extends AsyncTask<Integer, Void, ArrayList<Template>> {

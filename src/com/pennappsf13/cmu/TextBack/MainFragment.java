@@ -72,10 +72,10 @@ public class MainFragment extends SherlockFragment {
     }
 
 
-    public void showPinDialog() {
+    public void showPinDialog(String message) {
         int pin = mPreferences.getInt(getString(R.string.pref_pin_code), -1);
         FragmentManager fm = getSherlockActivity().getSupportFragmentManager();
-        PinDialogFragment dialog = PinDialogFragment.newInstance(pin);
+        PinDialogFragment dialog = PinDialogFragment.newInstance(pin, message);
 
         dialog.show(fm, "PINDOALOG");
     }
@@ -91,7 +91,7 @@ public class MainFragment extends SherlockFragment {
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.menu_view_pin:
-                showPinDialog();
+                showPinDialog(null);
                 return true;
             default:
                 return super.onOptionsItemSelected(item);
@@ -345,7 +345,7 @@ public class MainFragment extends SherlockFragment {
                                 .commit();
                         RegisterUserTask task = new RegisterUserTask();
                         task.execute(pin);
-                        showPinDialog();
+                        showPinDialog(null);
                     }
                 })
                 .setNegativeButton(android.R.string.no, new DialogInterface.OnClickListener() {

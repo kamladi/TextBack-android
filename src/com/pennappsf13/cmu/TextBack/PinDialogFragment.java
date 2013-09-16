@@ -18,10 +18,15 @@ import com.actionbarsherlock.app.SherlockDialogFragment;
 public class PinDialogFragment extends SherlockDialogFragment {
 
     public static final String EXTRA_PIN = "com.pennappsf12.cmu.TextBack.pinCode";
+    public static final String EXTRA_MESSAGE = "com.pennappsf12.cmu.TextBack.dialogmessage";
 
-    public static PinDialogFragment newInstance (int pinCode) {
+    public static PinDialogFragment newInstance (int pinCode, String message) {
         Bundle args = new Bundle();
         args.putInt(EXTRA_PIN, pinCode);
+
+        if(message != "") {
+            args.putString(EXTRA_MESSAGE, message);
+        }
 
         PinDialogFragment fragment = new PinDialogFragment();
         fragment.setArguments(args);
@@ -32,11 +37,13 @@ public class PinDialogFragment extends SherlockDialogFragment {
     @Override
     public Dialog onCreateDialog(Bundle savedInstanceState) {
         int pinCode = getArguments().getInt(EXTRA_PIN);
+        String message = getArguments().getString(EXTRA_MESSAGE);
         Dialog d = null;
 
-        String message = "";
         if (pinCode == -1) {
-            message = "You opted not to register, therefore you do not have a pin code.";
+            if (message == null) {
+                message = "You opted not to register, therefore you do not have a pin code.";
+            }
             d =  new AlertDialog.Builder(getActivity())
                     .setTitle("Remote Access PIN Code")
                     .setMessage(message)

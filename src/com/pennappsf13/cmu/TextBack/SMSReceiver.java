@@ -58,7 +58,7 @@ public class SMSReceiver extends BroadcastReceiver {
                         service.putExtra(EXTRA_SENDEE_NUMBER, strMsgSrc);
                         context.startService(service);
                     } else {
-                        Toast.makeText(context, "OFFFFFF", Toast.LENGTH_SHORT).show();
+                        //do nothing since service is "off"
                     }
                 }
                 Log.i(TAG, "SMS from " + strMsgSrc + " : " + strMsgBody);

@@ -24,7 +24,7 @@ About
 
 TextBack was written for the Fall 2013 Pennapps Hackathon by:
 
-Dan Yang (dsyang)
-Kedar Amladi (kamladi)
-Shubit Singh (shubhitms)
-Adhish Ramkumar (dieseldeesh)
+* Dan Yang [(dsyang)](https://github.com/dsyang)
+* Kedar Amladi [(kamladi)](https://github.com/kamladi)
+* Shubit Singh [(shubhitms)](https://github.com/shubhitms)
+* Adhish Ramkumar [(diseldeesh)](https://github.com/dieseldeesh)

@@ -7,6 +7,7 @@ to start the app remotely from a web interface. This is especially helpful if yo
 Start textback remotely and stop worrying about not responding to SMSs from friends/colleagues.
 
 debug build apk download link:
+https://github.com/kamladi/TextBack-android/releases/download/v0.1/TextBack-android.apk
 
 Video
 ===========
